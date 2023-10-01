@@ -12,10 +12,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'task-manager'`, () => {
+  it(`should have as title 'Gerenciador de Tarefas'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('task-manager');
+    expect(app.title).toEqual('Gerenciador de Tarefas');
   });
 
   it('should render title', () => {
