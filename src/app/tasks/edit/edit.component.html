@@ -1,7 +1,7 @@
 <h1>Editar tarefa</h1>
 
 <div class="well">
-  <form>
+  <form #formTask="ngForm">
     <div class="form-group">
       <label for="nome">Tarefa:</label>
       <input
@@ -9,26 +9,36 @@
         class="form-control"
         id="nome"
         name="nome"
+        [(ngModel)]="task.name"
+        #name="ngModel"
         minlength="5"
-        required>
-      <div class="alert alert-danger">
-        <div >
-          Digite a tarefa.
-        </div>
-        <div >
+        required
+      />
+      <div
+        *ngIf="name.errors && (name.dirty || name.touched)"
+        class="alert alert-danger"
+      >
+        <div [hidden]="!name.errors['required']">Digite a tarefa.</div>
+        <div [hidden]="!name.errors['minlength']">
           A tarefa deve conter ao menos 5 caracteres.
         </div>
       </div>
     </div>
     <div class="form-group text-center">
-      <input
+      <button
         type="submit"
         class="btn btn-success"
-        value="Atualizar">
-      <a
-        class="btn btn-default">
-        <span class="glyphicon glyphicon-chevron-left"
-          aria-hidden="true"></span> Voltar
+        (click)="edit()"
+        [disabled]="!formTask.form.valid"
+      >
+        Atualizar
+      </button>
+      <a class="btn btn-default">
+        <span
+          class="glyphicon glyphicon-chevron-left"
+          aria-hidden="true"
+        ></span>
+        Voltar
       </a>
     </div>
   </form>
